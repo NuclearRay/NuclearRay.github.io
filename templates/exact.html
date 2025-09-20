@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row g-4">
+  <div class="col-12 col-lg-4">
+    <div class="card p-4">
+      <h2 class="h5 mb-3">Exact / Scaled Exact</h2>
+      <form method="post">
+        <div class="mb-3">
+          <label class="form-label">Preset</label>
+          <select class="form-select" name="preset">
+            <option value="" {% if not preset %}selected{% endif %}>Default</option>
+            <option value="starter" {% if preset=='starter' %}selected{% endif %}>Starter</option>
+            <option value="mid_range" {% if preset=='mid_range' %}selected{% endif %}>Mid Range</option>
+            <option value="premium" {% if preset=='premium' %}selected{% endif %}>Premium</option>
+            <option value="league of legends" {% if preset=='league of legends' %}selected{% endif %}>League of Legends</option>
+            <option value="custom" {% if preset=='custom' %}selected{% endif %}>Custom (use your set)</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Target Currency</label>
+          <input type="number" class="form-control" name="target" min="0" placeholder="e.g., 1250" required />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Max Multiplier (k)</label>
+          <input type="number" class="form-control" name="max_k" min="1" max="100" value="100" />
+        </div>
+        <button class="btn btn-primary w-100" type="submit">Find Exact</button>
+      </form>
+    </div>
+  </div>
+  <div class="col-12 col-lg-8">
+    <div class="card p-4">
+      <h2 class="h5 mb-3">Result</h2>
+      {% if result %}
+        {% if result.error %}
+          <div class="alert alert-danger">{{ result.error }}</div>
+        {% elif result.no_solution %}
+          <div class="alert alert-warning">No exact solution found for {{ result.target }} or any multiple up to {{ result.max_k }}×.</div>
+        {% else %}
+          <div class="row mb-3 g-3">
+            <div class="col-6 col-lg-3"><div class="small text-secondary">Base Target</div><div class="fs-5">{{ result.target }}</div></div>
+            <div class="col-6 col-lg-3"><div class="small text-secondary">k</div><div class="fs-5">{{ result.k }}×</div></div>
+            <div class="col-6 col-lg-3"><div class="small text-secondary">Exact Coins</div><div class="fs-5">{{ result.exact_target }}</div></div>
+            <div class="col-6 col-lg-3"><div class="small text-secondary">Cost</div><div class="fs-5">${{ '%.2f'|format(result.cost) }}</div></div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-sm align-middle">
+              <thead>
+                <tr>
+                  <th>Package</th>
+                  <th>Cost</th>
+                  <th>Qty</th>
+                  <th>Coins</th>
+                  <th>Subtotal</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for row in result.plan %}
+                <tr>
+                  <td>{{ row.name }}</td>
+                  <td>${{ '%.2f'|format(row.cost) }}</td>
+                  <td>{{ row.qty }}</td>
+                  <td>{{ row.coins }}</td>
+                  <td>${{ '%.2f'|format(row.subtotal) }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="mt-2 small text-secondary">Efficiency: {{ '%.2f'|format(result.efficiency) }} coins/$</div>
+        {% endif %}
+      {% else %}
+        <p class="text-secondary">Fill the form to see results.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

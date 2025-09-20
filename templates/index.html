@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row g-4">
+  <div class="col-12 col-lg-8">
+    <div class="card p-4 h-100">
+      <h2 class="h4 mb-3">Welcome to Game Currency Optimizer</h2>
+      <p class="text-secondary">Use the tools below to get the best value from your in-game purchases. Choose a preset to auto-load common packages, or stick with defaults.</p>
+      <div class="row g-3">
+        <div class="col-12 col-md-6">
+          <a class="btn btn-primary w-100" href="/optimize">Optimize Minimum Cost</a>
+        </div>
+        <div class="col-12 col-md-6">
+          <a class="btn btn-outline-primary w-100" href="/exact">Exact / Scaled Exact</a>
+        </div>
+        <div class="col-12 col-md-6">
+          <a class="btn btn-outline-info w-100" href="/spend">Optimize Spend</a>
+        </div>
+        <div class="col-12 col-md-6">
+          <a class="btn btn-outline-light w-100" href="/analyze">Analyze Packages</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-lg-4">
+    <div class="card p-4 h-100">
+      <h3 class="h5">Quick Tips</h3>
+      <ul class="mt-2">
+        <li>Use <span class="badge bg-primary">Optimize</span> to minimize money for a target coins amount.</li>
+        <li>Try <span class="badge bg-info">Exact</span> if you need an exact coin total (or a multiple up to 100×).</li>
+        <li>Use <span class="badge bg-success">Spend</span> to maximize use of a currency budget with item costs.</li>
+        <li>Check <span class="badge bg-secondary">Analyze</span> to compare package efficiencies.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}
