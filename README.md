@@ -285,3 +285,42 @@ Where: quantity_i ≥ 0 for all i
 ```
 
 The dynamic programming solution builds up optimal solutions for smaller targets to solve larger ones, guaranteeing the global optimum.
+
+## GitHub Pages (Static Web UI)
+
+This repo includes a fully static web UI under `docs/` that runs entirely in the browser (no backend required). It re-implements the core DP algorithms in JavaScript and supports:
+
+- Optimize minimum cost for a target
+- Exact or scaled exact matching (up to k=100)
+- Spend optimization (budget + item costs; repeatable or one-time)
+- Presets and a custom package editor (stored in `localStorage`)
+
+### Try locally
+
+Just open `docs/index.html` in your browser, or serve the folder with a simple HTTP server:
+
+```bash
+python -m http.server -d docs 8000
+# then open http://127.0.0.1:8000
+```
+
+### Publish on GitHub Pages
+
+1. Create a GitHub repository and push this project.
+2. In GitHub, go to Settings → Pages.
+3. Under "Build and deployment", set:
+   - Source: Deploy from a branch
+   - Branch: `main` (or `master`), folder: `/docs`
+4. Save. GitHub Pages will publish your site at `https://<username>.github.io/<repo>/`.
+
+Optional:
+- To use a custom domain, create a DNS CNAME and add a `docs/CNAME` file with your domain name.
+- If you use special files, you can add `docs/.nojekyll` to bypass Jekyll processing.
+
+### Static UI Files
+
+- `docs/index.html` – UI layout (Bootstrap)
+- `docs/styles.css` – Dark theme styles
+- `docs/app.js` – JavaScript DP algorithms and UI logic
+
+The static site has no dependency on Python; it can be hosted on any static web host.
