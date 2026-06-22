@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Root Utilities</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Root Utilities</h1>
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="factions">Factions</button>
+            <button class="tab-btn" data-tab="knaves">Knaves</button>
+            <button class="tab-btn" data-tab="draft">Draft</button>
+            <button class="tab-btn" data-tab="map">Map</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- FACTIONS TAB -->
+        <section id="factions" class="tab-content active">
+            <div class="panel filters">
+                <h2>Filters</h2>
+                
+                <div class="filter-group">
+                    <label>Number of Players:</label>
+                    <div class="radio-group" id="faction-players">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label>Required Factions:</label>
+                    <div class="checkbox-group" id="faction-reqs">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+                
+                <button id="clear-faction-filters" class="btn secondary">Clear Filters</button>
+            </div>
+            
+            <div class="panel results">
+                <h2>Viable Combinations</h2>
+                <p id="faction-summary" class="summary"></p>
+                <div id="faction-results" class="results-list"></div>
+            </div>
+        </section>
+
+        <!-- KNAVES TAB -->
+        <section id="knaves" class="tab-content">
+            <div class="panel filters">
+                <h2>Filters</h2>
+                
+                <div class="filter-group">
+                    <label>Required Captains:</label>
+                    <div class="checkbox-group" id="knave-reqs">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label>Required Items:</label>
+                    <div class="checkbox-group" id="item-reqs">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+                
+                <button id="clear-knave-filters" class="btn secondary">Clear Filters</button>
+            </div>
+            
+            <div class="panel results">
+                <h2>Combinations (3 Captains, 6 Unique Items)</h2>
+                <p id="knave-summary" class="summary"></p>
+                <div id="knave-results" class="results-list"></div>
+            </div>
+        </section>
+
+        <!-- DRAFT TAB -->
+        <section id="draft" class="tab-content">
+            <div class="panel filters">
+                <h2>Draft Options</h2>
+                
+                <div class="filter-group">
+                    <label>Number of Players:</label>
+                    <div class="radio-group" id="draft-players">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label>Exclude Factions:</label>
+                    <div class="checkbox-group" id="draft-exclusions">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+                
+                <button id="clear-draft-filters" class="btn secondary">Clear Exclusions</button>
+                <div class="btn-group">
+                    <button id="btn-draft-random" class="btn primary">Generate Random Draft</button>
+                    <button id="btn-draft-adset" class="btn primary">Generate Standard Adset</button>
+                </div>
+            </div>
+            
+            <div class="panel results">
+                <h2>Faction Draft</h2>
+                <div id="draft-error" class="error-msg"></div>
+                <div id="draft-results" class="results-list">
+                    <p class="placeholder">Select your options and click a generate button.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAP TAB -->
+        <section id="map" class="tab-content">
+            <div class="panel filters">
+                <h2>Map Options</h2>
+                
+                <div class="filter-group">
+                    <label>Select Map:</label>
+                    <select id="map-select">
+                        <!-- Populated by JS -->
+                    </select>
+                </div>
+                
+                <button id="btn-map-random" class="btn primary">Randomize Clearings</button>
+            </div>
+            
+            <div class="panel results">
+                <h2>Map View</h2>
+                <div id="map-error" class="error-msg"></div>
+                
+                <div id="map-container" class="map-container" style="display:none;">
+                    <img id="map-image" src="" alt="Map Image">
+                    <div id="map-overlay" class="map-overlay"></div>
+                </div>
+
+                <div id="map-results" class="results-list" style="margin-top: 15px;">
+                    <p class="placeholder">Select a map and click 'Randomize Clearings'.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
