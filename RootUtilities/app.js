@@ -496,9 +496,9 @@ btnMapRandom.addEventListener('click', () => {
     let suitsCount = n / 3;
     let basePool = [];
     for(let i=0; i<suitsCount; i++) {
-        basePool.push({name: "Fox", icon: "🦊"});
-        basePool.push({name: "Mouse", icon: "🐭"});
-        basePool.push({name: "Rabbit", icon: "🐰"});
+        basePool.push({name: "Fox", icon: "images/Fox_Icon.png"});
+        basePool.push({name: "Mouse", icon: "images/Mouse_Icon.png"});
+        basePool.push({name: "Rabbit", icon: "images/Bunny_Icon.png"});
     }
 
     let assignment = {};
@@ -550,9 +550,15 @@ btnMapRandom.addEventListener('click', () => {
         marker.className = 'clearing-marker';
         marker.style.left = `${loc.x}%`;
         marker.style.top = `${loc.y}%`;
-        marker.style.background = color.bg;
-        marker.style.borderColor = color.border;
-        marker.innerText = s.icon;
+        marker.style.background = '#fff';
+        marker.style.borderColor = color.bg;
+        let img = document.createElement('img');
+        img.src = s.icon;
+        img.alt = s.name;
+        img.style.width = '70%';
+        img.style.height = '70%';
+        img.style.objectFit = 'contain';
+        marker.appendChild(img);
         marker.title = `Clearing ${c}: ${s.name}`;
         mapOverlay.appendChild(marker);
     });
@@ -561,7 +567,7 @@ btnMapRandom.addEventListener('click', () => {
     let html = `<div style="margin-bottom: 10px; font-weight: bold; color: var(--accent);">Valid layout generated:</div>`;
     map.clearings.forEach(c => {
         let s = assignment[c];
-        html += `<div class="draft-item">Clearing ${String(c).padStart(2, '0')}: ${s.name} ${s.icon}</div>`;
+        html += `<div class="draft-item">Clearing ${String(c).padStart(2, '0')}: ${s.name}</div>`;
     });
     document.getElementById('map-results').innerHTML = html;
 });
